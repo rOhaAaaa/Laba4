@@ -1,0 +1,3 @@
+database:
+uri: 'mysql+mysqlconnector://user:5555@localhost/mydb1'
+
