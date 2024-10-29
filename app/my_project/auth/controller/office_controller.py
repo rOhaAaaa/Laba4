@@ -1,4 +1,3 @@
-# my_project/auth/controller/office_controller.py
 import sys
 import os
 
@@ -61,3 +60,12 @@ def delete_office(id):
         except Exception as e:
             return jsonify({"error": str(e)}), 500
     return jsonify({"message": "Office not found"}), 404
+
+@office_bp.route('/<int:id>/employees', methods=['GET'])
+def get_office_employees(id):
+    office = office_dao.get_office_by_id(id)
+    if office:
+        employees = office.employees 
+        return jsonify([employee.to_dict() for employee in employees]), 200
+    return jsonify({"message": "Office not found"}), 404
+

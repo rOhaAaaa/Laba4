@@ -28,9 +28,9 @@ def create_router():
     try:
         new_router = Router(
             model_name=data['model_name'],
-            connection_speed=data['connection_speed']  # Змінив `speed` на `connection_speed`
+            connection_speed=data['connection_speed']  
         )
-        router_dao.add_router(new_router)  # Змінив `create_router()` на `add_router()`
+        router_dao.add_router(new_router)  
         return jsonify({"message": "Router created successfully"}), 201
     except Exception as e:
         return jsonify({"error": str(e)}), 500
@@ -42,7 +42,7 @@ def update_router(id):
     if router:
         try:
             router.model_name = data.get('model_name', router.model_name)
-            router.connection_speed = data.get('connection_speed', router.connection_speed)  # Змінив `speed` на `connection_speed`
+            router.connection_speed = data.get('connection_speed', router.connection_speed)  
             router_dao.update_router(router)
             return jsonify({"message": "Router updated successfully"}), 200
         except Exception as e:

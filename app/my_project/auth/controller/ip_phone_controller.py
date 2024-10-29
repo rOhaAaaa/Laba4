@@ -26,7 +26,7 @@ def get_ip_phone_by_id(id):
 def create_ip_phone():
     data = request.get_json()
     try:
-        # Перевіряємо, щоб всі необхідні поля були передані
+
         if 'model_name' not in data or 'line_type' not in data or 'phone_number' not in data:
             return jsonify({"error": "Missing required fields"}), 400
 
@@ -35,7 +35,7 @@ def create_ip_phone():
             line_type=data['line_type'],
             phone_number=data['phone_number']
         )
-        ip_phone_dao.add_ip_phone(new_ip_phone)  # Використовуємо add_ip_phone замість create_ip_phone
+        ip_phone_dao.add_ip_phone(new_ip_phone)  
         return jsonify({"message": "IP Phone created successfully"}), 201
     except Exception as e:
         return jsonify({"error": str(e)}), 500

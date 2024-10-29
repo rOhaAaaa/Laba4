@@ -6,6 +6,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')
 from flask import Blueprint, request, jsonify
 from my_project.auth.dao.employee_dao import EmployeeDAO
 from my_project.auth.domain.employee import Employee
+from my_project.auth.dao.printer_dao import PrinterDAO
 
 employee_bp = Blueprint('employee', __name__)
 employee_dao = EmployeeDAO()
@@ -62,3 +63,15 @@ def delete_employee(id):
         except Exception as e:
             return jsonify({"error": str(e)}), 500
     return jsonify({"message": "Employee not found"}), 404
+
+@employee_bp.route('/<int:id>/printers', methods=['GET'])
+def get_printers_of_employee(id):
+    employee = employee_dao.get_employee_by_id(id)
+    if employee:
+        try:
+            printers = [printer.to_dict() for printer in employee.printers]
+            return jsonify({"employee_id": employee.employee_id, "printers": printers}), 200
+        except Exception as e:
+            return jsonify({"error": str(e)}), 500
+    return jsonify({"message": "Employee not found"}), 404
+

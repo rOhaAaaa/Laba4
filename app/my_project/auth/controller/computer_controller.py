@@ -26,15 +26,13 @@ def get_computer_by_id(id):
 def create_computer():
     data = request.get_json()
     try:
-        # Перевірка обов'язкових полів
         if 'model_name' not in data or 'operating_system' not in data:
             return jsonify({"error": "Missing required fields"}), 400
 
-        # Створення нового запису без перевірки config_id
         new_computer = Computer(
             model_name=data['model_name'],
             operating_system=data['operating_system'],
-            config_id=data.get('config_id')  # config_id може бути None
+            config_id=data.get('config_id')  
         )
         computer_dao.add_computer(new_computer)
         return jsonify({"message": "Computer created successfully"}), 201
@@ -66,3 +64,18 @@ def delete_computer(id):
         except Exception as e:
             return jsonify({"error": f"Failed to delete computer: {str(e)}"}), 500
     return jsonify({"message": "Computer not found"}), 404
+
+@computer_bp.route('/computers_with_configurations', methods=['GET'])
+def get_computers_with_configurations():
+    computers = computer_dao.get_all_computers()
+    computers_with_configs = [
+        {
+            'computer_id': computer.computer_id,
+            'model_name': computer.model_name,
+            'operating_system': computer.operating_system,
+            'configuration': computer.configuration.to_dict() if computer.configuration else None
+        }
+        for computer in computers
+    ]
+    return jsonify(computers_with_configs), 200
+

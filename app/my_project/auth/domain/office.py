@@ -9,7 +9,6 @@ class Office(db.Model):
     office_name = db.Column(db.String(255), nullable=False)
     address = db.Column(db.String(255), nullable=False)
 
-    # Вказання відносин з іншими таблицями
     employees = relationship("Employee", back_populates="office", cascade="all, delete-orphan")
 
     def to_dict(self):
