@@ -22,5 +22,4 @@ class Employee(db.Model):
             'surname': self.surname,
             'position': self.position,
             'office_id': self.office_id,
-            'printers': [printer.printer_id for printer in self.printers]
     }
