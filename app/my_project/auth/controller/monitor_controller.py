@@ -6,9 +6,12 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')
 from flask import Blueprint, request, jsonify
 from my_project.auth.dao.monitor_dao import MonitorDAO
 from my_project.auth.domain.monitor import Monitor
+from my_project.auth.service.generic_service import GenericService
+from db import db
 
 monitor_bp = Blueprint('monitor', __name__)
 monitor_dao = MonitorDAO()
+service = GenericService()
 
 @monitor_bp.route('/monitors', methods=['GET'])
 def get_all_monitors():
@@ -38,6 +41,23 @@ def create_monitor():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+@monitor_bp.route('/monitor/add_procedure', methods=['POST'])
+def add_monitor_via_procedure():
+    data = request.get_json()
+    if not data or 'model_name' not in data or 'screen_size' not in data:
+        return jsonify({"error": "Invalid data"}), 400
+
+    try:
+        sql_query = """
+        CALL insert_into_monitor(%s, %s)
+        """
+        db.session.execute(sql_query, (data['model_name'], data['screen_size']))
+        db.session.commit()
+        return jsonify({"message": "Monitor added via procedure"}), 201
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({"error": str(e)}), 500
+
 @monitor_bp.route('/monitor/<int:id>', methods=['PUT'])
 def update_monitor(id):
     data = request.get_json()
@@ -62,3 +82,15 @@ def delete_monitor(id):
         except Exception as e:
             return jsonify({"error": str(e)}), 500
     return jsonify({"message": "Monitor not found"}), 404
+
+@monitor_bp.route('/procedure/<procedure_name>', methods=['POST'])
+def call_procedure(procedure_name):
+    try:
+        params = request.json.get('params', [])
+
+        results = service.execute_procedure(procedure_name, params)
+
+        return jsonify({"message": "Procedure executed", "results": results}), 200
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500

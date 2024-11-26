@@ -6,6 +6,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')
 from flask import Blueprint, request, jsonify
 from my_project.auth.dao.computer_dao import ComputerDAO
 from my_project.auth.domain.computer import Computer
+from db import db
 
 computer_bp = Blueprint('computer', __name__)
 computer_dao = ComputerDAO()
@@ -79,3 +80,15 @@ def get_computers_with_configurations():
     ]
     return jsonify(computers_with_configs), 200
 
+@computer_bp.route('/computers/create_dynamic_tables', methods=['POST'])
+def create_dynamic_computer_tables():
+    try:
+        sql_query = """
+        CALL create_dynamic_computer_tables_and_distribute_data()
+        """
+        db.session.execute(sql_query)
+        db.session.commit()
+        return jsonify({"message": "Dynamic tables created and data distributed successfully"}), 201
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({"error": str(e)}), 500

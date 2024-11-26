@@ -1,7 +1,6 @@
 import sys
 import os
 
-# Додаємо шлях до папки 'app', щоб модулі були доступні
 sys.path.append(os.path.abspath(os.path.dirname(__file__)))
 
 from flask import Flask
@@ -19,7 +18,6 @@ def create_app():
     db.init_app(app)
     migrate = Migrate(app, db)
 
-    # Реєстрація blueprints для кожного контролера
     from my_project.auth.controller.employee_controller import employee_bp
     from my_project.auth.controller.office_controller import office_bp
     from my_project.auth.controller.configuration_controller import configuration_bp
@@ -30,6 +28,8 @@ def create_app():
     from my_project.auth.controller.router_controller import router_bp
     from my_project.auth.controller.employee_equipment_controller import employee_equipment_bp
     from my_project.auth.controller.ip_phone_controller import ip_phone_bp
+    from my_project.auth.controller.departments_controller import department_bp
+    from my_project.auth.controller.procedure_controller import procedure_bp
 
     app.register_blueprint(employee_bp, url_prefix='/employees')
     app.register_blueprint(office_bp, url_prefix='/offices')
@@ -41,6 +41,8 @@ def create_app():
     app.register_blueprint(router_bp, url_prefix='/routers')
     app.register_blueprint(employee_equipment_bp, url_prefix='/employee_equipment')
     app.register_blueprint(ip_phone_bp, url_prefix='/ip_phone')
+    app.register_blueprint(department_bp, url_prefix='/departments')
+    app.register_blueprint(procedure_bp, url_prefix='/procedures')
 
     @app.route('/')
     def home():

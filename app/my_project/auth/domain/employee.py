@@ -1,7 +1,7 @@
 from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship
 from db import db
-from my_project.auth.domain.association_table import employee_printers
+from my_project.auth.domain.association_table import employee_printers, employee_projects
 
 class Employee(db.Model):
     __tablename__ = 'employees'
@@ -11,10 +11,14 @@ class Employee(db.Model):
     surname = db.Column(db.String(45), nullable=False)
     position = db.Column(db.String(100), nullable=False)
     office_id = db.Column(db.Integer, db.ForeignKey('offices.office_id'), nullable=True)
+    department_id = db.Column(db.Integer, db.ForeignKey('departments.department_id'), nullable=True)
 
     office = db.relationship("Office", back_populates="employees")
+    department = db.relationship("Department", back_populates="employees")
 
     printers = relationship('Printer', secondary=employee_printers, back_populates='employees')
+    projects = relationship('Project', secondary=employee_projects, back_populates='employees')  
+
     def to_dict(self):
         return {
             'employee_id': self.employee_id,
@@ -22,4 +26,6 @@ class Employee(db.Model):
             'surname': self.surname,
             'position': self.position,
             'office_id': self.office_id,
-    }
+            'department_id': self.department_id,
+            'projects': [project.to_dict() for project in self.projects]
+        }

@@ -6,6 +6,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')
 from flask import Blueprint, request, jsonify
 from my_project.auth.dao.ip_phone_dao import IPPhoneDAO
 from my_project.auth.domain.ip_phone import IPPhone
+from db import db
 
 ip_phone_bp = Blueprint('ip_phone', __name__)
 ip_phone_dao = IPPhoneDAO()
@@ -26,7 +27,6 @@ def get_ip_phone_by_id(id):
 def create_ip_phone():
     data = request.get_json()
     try:
-
         if 'model_name' not in data or 'line_type' not in data or 'phone_number' not in data:
             return jsonify({"error": "Missing required fields"}), 400
 
@@ -65,3 +65,33 @@ def delete_ip_phone(id):
         except Exception as e:
             return jsonify({"error": str(e)}), 500
     return jsonify({"message": "IP Phone not found"}), 404
+
+@ip_phone_bp.route('/ip_phone/add_batch', methods=['POST'])
+def add_ip_phone_batch():
+    try:
+        sql_query = """
+        CALL insert_ip_phone_batch()
+        """
+        db.session.execute(sql_query)
+        db.session.commit()
+        return jsonify({"message": "10 IP phones added successfully"}), 201
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({"error": str(e)}), 500
+
+@ip_phone_bp.route('/ip_phone/statistic', methods=['GET'])
+def get_ip_phone_statistic():
+    column_name = request.args.get('column_name')
+    operation = request.args.get('operation')
+
+    if not column_name or not operation:
+        return jsonify({"error": "Missing column_name or operation"}), 400
+
+    try:
+        sql_query = """
+        SELECT calculate_ip_phone_stat(%s, %s) AS result
+        """
+        result = db.session.execute(sql_query, (column_name, operation)).fetchone()
+        return jsonify({"result": result['result']}), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
