@@ -1,4 +1,4 @@
-from my_project.auth.dao.printer_dao import PrinterDAO
+from app.my_project.auth.dao.printer_dao import PrinterDAO
 
 class PrinterService:
     def __init__(self):

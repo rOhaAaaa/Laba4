@@ -4,16 +4,16 @@ import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
 
 from flask import Blueprint, request, jsonify
-from my_project.auth.dao.employee_equipment_dao import EmployeeEquipmentDAO
-from my_project.auth.domain.employee_equipment import EmployeeEquipment
-from my_project.auth.domain.employee import Employee
-from my_project.auth.domain.office import Office
-from my_project.auth.domain.computer import Computer
-from my_project.auth.domain.monitor import Monitor
-from my_project.auth.domain.ip_phone import IPPhone
-from my_project.auth.domain.printer import Printer
-from my_project.auth.domain.router import Router
-from my_project.auth.domain.access_point import AccessPoint
+from app.my_project.auth.dao.employee_equipment_dao import EmployeeEquipmentDAO
+from app.my_project.auth.domain.employee_equipment import EmployeeEquipment
+from app.my_project.auth.domain.employee import Employee
+from app.my_project.auth.domain.office import Office
+from app.my_project.auth.domain.computer import Computer
+from app.my_project.auth.domain.monitor import Monitor
+from app.my_project.auth.domain.ip_phone import IPPhone
+from app.my_project.auth.domain.printer import Printer
+from app.my_project.auth.domain.router import Router
+from app.my_project.auth.domain.access_point import AccessPoint
 
 employee_equipment_bp = Blueprint('employee_equipment', __name__)
 employee_equipment_dao = EmployeeEquipmentDAO()

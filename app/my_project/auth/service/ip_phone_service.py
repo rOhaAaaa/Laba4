@@ -1,4 +1,4 @@
-from my_project.auth.dao.ip_phone_dao import IPPhoneDAO
+from app.my_project.auth.dao.ip_phone_dao import IPPhoneDAO
 
 class IPPhoneService:
     def __init__(self):

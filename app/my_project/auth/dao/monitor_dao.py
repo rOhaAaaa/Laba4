@@ -1,5 +1,5 @@
-from my_project.auth.domain.monitor import Monitor
-from db import db
+from app.my_project.auth.domain.monitor import Monitor
+from app.db import db
 
 class MonitorDAO:
     def __init__(self):

@@ -1,7 +1,7 @@
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import relationship
-from db import db
-from my_project.auth.domain.association_table import employee_projects
+from app.db import db
+from app.my_project.auth.domain.association_table import employee_projects
 
 class Project(db.Model):
     __tablename__ = 'projects'

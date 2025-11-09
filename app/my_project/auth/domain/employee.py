@@ -1,7 +1,7 @@
 from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship
-from db import db
-from my_project.auth.domain.association_table import employee_printers, employee_projects
+from app.db import db
+from .association_table import employee_printers, employee_projects
 
 class Employee(db.Model):
     __tablename__ = 'employees'

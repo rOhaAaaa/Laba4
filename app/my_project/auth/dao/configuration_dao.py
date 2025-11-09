@@ -1,5 +1,5 @@
-from my_project.auth.domain.configuration import Configuration
-from db import db
+from app.my_project.auth.domain.configuration import Configuration
+from app.db import db
 
 class ConfigurationDAO:
     def __init__(self):

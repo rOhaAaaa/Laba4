@@ -1,5 +1,5 @@
-from my_project.auth.domain.access_point import AccessPoint
-from db import db
+from app.my_project.auth.domain.access_point import AccessPoint
+from app.db import db
 
 class AccessPointDAO:
     def __init__(self):

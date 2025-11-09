@@ -1,6 +1,6 @@
-from db import db
+from app.db import db
 from sqlalchemy.orm import relationship
-from my_project.auth.domain.association_table import employee_printers
+from app.my_project.auth.domain.association_table import employee_printers
 
 class Printer(db.Model):
     __tablename__ = 'printers'

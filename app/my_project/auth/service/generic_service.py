@@ -1,4 +1,4 @@
-from db import db
+from app.db import db
 
 class GenericService:
     def __init__(self):

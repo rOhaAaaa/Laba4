@@ -1,4 +1,4 @@
-from my_project.auth.dao.router_dao import RouterDAO
+from app.my_project.auth.dao.router_dao import RouterDAO
 
 class RouterService:
     def __init__(self):

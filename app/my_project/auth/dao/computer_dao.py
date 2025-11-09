@@ -1,5 +1,5 @@
-from my_project.auth.domain.computer import Computer
-from db import db
+from app.my_project.auth.domain.computer import Computer
+from app.db import db
 
 class ComputerDAO:
     def __init__(self):

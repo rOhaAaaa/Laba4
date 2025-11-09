@@ -4,7 +4,7 @@ import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
 
 from flask import Blueprint, request, jsonify
-from my_project.auth.service.generic_service import GenericService
+from app.my_project.auth.service.generic_service import GenericService
 
 procedure_bp = Blueprint('procedure', __name__)
 service = GenericService()

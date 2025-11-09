@@ -1,5 +1,5 @@
-from my_project.auth.domain.department import Department
-from db import db
+from app.my_project.auth.domain.department import Department
+from app.db import db
 
 class DepartmentDAO:
     def __init__(self):

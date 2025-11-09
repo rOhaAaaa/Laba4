@@ -1,4 +1,4 @@
-from my_project.auth.dao.project_dao import ProjectDAO
+from app.my_project.auth.dao.project_dao import ProjectDAO
 
 class ProjectService:
     def __init__(self):

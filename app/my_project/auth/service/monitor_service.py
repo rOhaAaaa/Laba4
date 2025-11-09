@@ -1,4 +1,4 @@
-from my_project.auth.dao.monitor_dao import MonitorDAO
+from app.my_project.auth.dao.monitor_dao import MonitorDAO
 
 class MonitorService:
     def __init__(self):

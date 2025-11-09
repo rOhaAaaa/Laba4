@@ -1,5 +1,5 @@
-from my_project.auth.domain.office import Office
-from db import db
+from app.my_project.auth.domain.office import Office
+from app.db import db
 
 class OfficeDAO:
     def __init__(self):

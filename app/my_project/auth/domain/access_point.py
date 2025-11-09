@@ -1,5 +1,5 @@
 from sqlalchemy import Column, Integer, String
-from db import db
+from app.db import db
 
 class AccessPoint(db.Model):
     __tablename__ = 'access_points'

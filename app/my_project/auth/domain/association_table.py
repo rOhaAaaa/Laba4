@@ -1,4 +1,4 @@
-from db import db
+from app.db import db
 
 employee_printers = db.Table(
     'employee_printers',
