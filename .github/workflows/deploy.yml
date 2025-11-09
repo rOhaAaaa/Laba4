@@ -2,7 +2,7 @@ name: Deploy to EC2
 
 on:
   push:
-    branches: [ "Laba-5" ]  
+    branches: [ "Laba-5" ]
 
 jobs:
   deploy:
@@ -22,7 +22,7 @@ jobs:
           target: "/home/ubuntu/Laba4"
           overwrite: true
 
-      - name: SSH: install deps, migrate, restart
+      - name: "SSH: install deps, migrate, restart"
         uses: appleboy/ssh-action@v1.2.0
         with:
           host: ${{ secrets.EC2_HOST }}
