@@ -52,7 +52,6 @@ def get_all_departments():
     departments = department_dao.get_all_departments()
     items = [d.to_dict() for d in departments]
 
-    # наївна пагінація, якщо користувач просить
     try:
         page = int(request.args.get("page", 1))
         page_size = int(request.args.get("page_size", len(items) or 1))
@@ -125,7 +124,6 @@ def get_department_by_id(id: int):
 })
 def create_department():
     data = request.get_json(silent=True) or {}
-    # валідація
     if not data.get("department_name"):
         return jsonify({"error": "'department_name' is required"}), 400
 
