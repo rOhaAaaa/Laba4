@@ -58,7 +58,6 @@ def get_all_ip_phones():
     ip_phones = ip_phone_dao.get_all_ip_phones()
     items = [p.to_dict() for p in ip_phones]
 
-    # наївна пагінація, якщо користувач просить
     try:
         page = int(request.args.get("page", 1))
         page_size = int(request.args.get("page_size", len(items) or 1))
@@ -140,7 +139,6 @@ def get_ip_phone_by_id(id: int):
 })
 def create_ip_phone():
     data = request.get_json(silent=True) or {}
-    # валідація
     for field in ("model_name", "line_type", "phone_number"):
         if not data.get(field):
             return jsonify({"error": f"'{field}' is required"}), 400
