@@ -126,7 +126,6 @@ def get_router_by_id(id: int):
 })
 def create_router():
     data = request.get_json(silent=True) or {}
-    # валідація
     for field in ("model_name", "connection_speed"):
         if field not in data or data.get(field) in (None, ""):
             return jsonify({"error": f"'{field}' is required"}), 400
