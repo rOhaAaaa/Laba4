@@ -52,7 +52,6 @@ def get_all_access_points():
     access_points = access_point_dao.get_all_access_points()
     items = [ap.to_dict() for ap in access_points]
 
-    # наївна пагінація, якщо користувач просить
     try:
         page = int(request.args.get("page", 1))
         page_size = int(request.args.get("page_size", len(items) or 1))
@@ -129,7 +128,6 @@ def get_access_point_by_id(id: int):
 })
 def create_access_point():
     data = request.get_json(silent=True) or {}
-    # валідація
     for field in ("brand", "model", "serial_number"):
         if not data.get(field):
             return jsonify({"error": f"'{field}' is required"}), 400
