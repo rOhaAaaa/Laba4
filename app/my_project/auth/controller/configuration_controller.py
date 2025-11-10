@@ -52,7 +52,6 @@ def get_all_configurations():
     configurations = configuration_dao.get_all_configurations()
     items = [c.to_dict() for c in configurations]
 
-    # наївна пагінація, якщо користувач просить
     try:
         page = int(request.args.get("page", 1))
         page_size = int(request.args.get("page_size", len(items) or 1))
@@ -129,7 +128,6 @@ def get_configuration_by_id(id: int):
 })
 def create_configuration():
     data = request.get_json(silent=True) or {}
-    # валідація
     for field in ("processor", "ram", "hard_drive"):
         if not data.get(field):
             return jsonify({"error": f"'{field}' is required"}), 400
