@@ -58,7 +58,6 @@ def get_all_computers():
     computers = computer_dao.get_all_computers()
     items = [c.to_dict() for c in computers]
 
-    # наївна пагінація, якщо користувач просить
     try:
         page = int(request.args.get("page", 1))
         page_size = int(request.args.get("page_size", len(items) or 1))
@@ -140,7 +139,6 @@ def get_computer_by_id(id: int):
 })
 def create_computer():
     data = request.get_json(silent=True) or {}
-    # валідація
     for field in ("model_name", "operating_system"):
         if not data.get(field):
             return jsonify({"error": f"'{field}' is required"}), 400
