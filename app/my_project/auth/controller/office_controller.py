@@ -52,7 +52,6 @@ def get_all_offices():
     offices = office_dao.get_all_offices()
     items = [o.to_dict() for o in offices]
 
-    # наївна пагінація, якщо користувач просить
     try:
         page = int(request.args.get("page", 1))
         page_size = int(request.args.get("page_size", len(items) or 1))
@@ -127,7 +126,6 @@ def get_office_by_id(id: int):
 })
 def create_office():
     data = request.get_json(silent=True) or {}
-    # валідація
     for field in ("office_name", "address"):
         if not data.get(field):
             return jsonify({"error": f"'{field}' is required"}), 400
