@@ -55,7 +55,6 @@ def get_all_monitors():
     monitors = monitor_dao.get_all_monitors()
     items = [m.to_dict() for m in monitors]
 
-    # наївна пагінація, якщо користувач просить
     try:
         page = int(request.args.get("page", 1))
         page_size = int(request.args.get("page_size", len(items) or 1))
@@ -130,7 +129,6 @@ def get_monitor_by_id(id: int):
 })
 def create_monitor():
     data = request.get_json(silent=True) or {}
-    # валідація
     for field in ("model_name", "screen_size"):
         if not data.get(field):
             return jsonify({"error": f"'{field}' is required"}), 400
