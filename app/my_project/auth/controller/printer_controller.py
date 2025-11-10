@@ -52,7 +52,6 @@ def get_all_printers():
     printers = printer_dao.get_all_printers()
     items = [p.to_dict() for p in printers]
 
-    # наївна пагінація, якщо користувач просить
     try:
         page = int(request.args.get("page", 1))
         page_size = int(request.args.get("page_size", len(items) or 1))
@@ -127,7 +126,6 @@ def get_printer_by_id(id: int):
 })
 def create_printer():
     data = request.get_json(silent=True) or {}
-    # валідація
     for field in ("printer_type", "print_speed"):
         if not data.get(field) and data.get(field) != 0:
             return jsonify({"error": f"'{field}' is required"}), 400
