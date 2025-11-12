@@ -1,0 +1,63 @@
+{
+  "containerDefinitions": [
+    {
+      "name": "api",
+      "image": "235366377533.dkr.ecr.eu-central-1.amazonaws.com/laba4-api:v5",
+      "cpu": 0,
+      "portMappings": [
+        {
+          "containerPort": 8080,
+          "hostPort": 8080,
+          "protocol": "tcp",
+          "name": "api-8080-tcp",
+          "appProtocol": "http"
+        }
+      ],
+      "essential": true,
+      "environment": [
+        {
+          "name": "JWT_SECRET_KEY",
+          "value": "dev-secret"
+        },
+        {
+          "name": "SQLALCHEMY_DATABASE_URI",
+          "value": "mysql+mysqlconnector://app_user:Roxa39865475@lab1-mysql.crms86a2cnqq.eu-central-1.rds.amazonaws.com:3306/app_db"
+        },
+        {
+          "name": "DATABASE_URL",
+          "value": "mysql+mysqlconnector://app_user:Roxa39865475@lab1-mysql.crms86a2cnqq.eu-central-1.rds.amazonaws.com:3306/app_db"
+        }
+      ],
+      "environmentFiles": [],
+      "mountPoints": [],
+      "volumesFrom": [],
+      "ulimits": [],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/laba4-api",
+          "awslogs-create-group": "true",
+          "awslogs-region": "eu-central-1",
+          "awslogs-stream-prefix": "ecs"
+        },
+        "secretOptions": []
+      },
+      "systemControls": []
+    }
+  ],
+  "family": "laba4-api",
+  "executionRoleArn": "arn:aws:iam::235366377533:role/ecsTaskExecutionRole",
+  "networkMode": "awsvpc",
+  "volumes": [],
+  "placementConstraints": [],
+  "runtimePlatform": {
+    "cpuArchitecture": "X86_64",
+    "operatingSystemFamily": "LINUX"
+  },
+  "requiresCompatibilities": [
+    "FARGATE"
+  ],
+  "cpu": "512",
+  "memory": "1024",
+  "enableFaultInjection": false
+}

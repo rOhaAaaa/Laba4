@@ -1,7 +1,10 @@
 import os
-from flask import Flask
+import time
+import math
+from flask import Flask, request, jsonify
 from flask_migrate import Migrate
 from flask_jwt_extended import JWTManager
+from flasgger import Swagger
 
 from .db import db
 
@@ -25,8 +28,6 @@ def create_app():
     Migrate(app, db)
     JWTManager(app)
 
-    from .my_project.auth import domain
-
     swagger_template = {
         "swagger": "2.0",
         "info": {"title": "Laba 4 API", "version": "1.0.0"},
@@ -44,6 +45,7 @@ def create_app():
         "uiversion": 3,
         "specs_route": "/apidocs/",
     }
+    Swagger(app, template=swagger_template)
 
     from .my_project.auth.controller.employee_controller import employee_bp
     from .my_project.auth.controller.office_controller import office_bp
@@ -53,7 +55,9 @@ def create_app():
     from .my_project.auth.controller.printer_controller import printer_bp
     from .my_project.auth.controller.access_point_controller import access_point_bp
     from .my_project.auth.controller.router_controller import router_bp
-    from .my_project.auth.controller.employee_equipment_controller import employee_equipment_bp
+    from .my_project.auth.controller.employee_equipment_controller import (
+        employee_equipment_bp,
+    )
     from .my_project.auth.controller.ip_phone_controller import ip_phone_bp
     from .my_project.auth.controller.departments_controller import department_bp
     from .my_project.auth.controller.procedure_controller import procedure_bp
@@ -71,12 +75,57 @@ def create_app():
     app.register_blueprint(department_bp, url_prefix="/departments")
     app.register_blueprint(procedure_bp, url_prefix="/procedures")
 
-    from flasgger import Swagger
-    Swagger(app, template=swagger_template)
-
     @app.get("/")
     def home():
         return "Welcome to the Laba 4 API!"
+
+    @app.get("/heavy")
+    def heavy():
+        """
+        Heavy endpoint (CPU or sleep)
+        ---
+        parameters:
+          - name: seconds
+            in: query
+            type: number
+            required: false
+            default: 3
+            description: Seconds to simulate work (0.1–60)
+          - name: mode
+            in: query
+            type: string
+            required: false
+            default: cpu
+            enum: [cpu, sleep]
+            description: Work mode: CPU-intensive (cpu) or blocking sleep (sleep)
+        responses:
+          200:
+            description: Work finished
+        """
+        try:
+            seconds = float(request.args.get("seconds", 3))
+        except ValueError:
+            seconds = 3.0
+        seconds = max(0.1, min(60.0, seconds))
+
+        mode = request.args.get("mode", "cpu").strip().lower()
+
+        started = time.time()
+        if mode == "sleep":
+            time.sleep(seconds)
+            elapsed = time.time() - started
+            return jsonify(ok=True, mode="sleep", slept=round(seconds, 3), elapsed=round(elapsed, 3))
+        else:
+            end = started + seconds
+            junk = 0.0
+            i = 0
+            while time.time() < end:
+                i += 1
+                junk += math.sqrt((i % 1000) + 0.123) * math.sin(i * 0.001)
+                if i % 100000 == 0:
+                    junk = junk / 2.0
+            elapsed = time.time() - started
+            return jsonify(ok=True, mode="cpu", elapsed=round(elapsed, 3), iters=i, junk=round(junk, 6))
 
     return app
 
