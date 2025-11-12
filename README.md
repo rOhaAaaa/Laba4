@@ -27,3 +27,55 @@
 ## ✅ Висновок
 У ході роботи створено та налаштовано **повноцінне хмарне середовище**:  
 додаток Flask з JWT, MySQL-базою на RDS, автоматичним деплоєм через GitHub Actions і Swagger-документацією.
+
+☁️ Laba 2: Контейнеризація та автоматичне масштабування REST API
+🧩 Опис
+
+У межах лабораторної роботи створено контейнеризований REST API-сервіс, розгорнутий у хмарному середовищі AWS ECS (Fargate).
+Система реалізує автоматичне масштабування контейнерів залежно від навантаження CPU, а також використовує окремий контейнер-генератор навантаження (k6) для тестування продуктивності.
+
+🔧 Реалізовано
+
+Створено Docker-образ Flask REST API на основі попередньої лабораторної роботи.
+
+Завантажено образ у Amazon ECR і розгорнуто контейнер як ECS Fargate service.
+
+Налаштовано автоматичне масштабування (Target Tracking Policy за метрикою CPUUtilization).
+
+Реалізовано endpoint /heavy з режимами CPU та memory для імітації навантаження.
+
+Створено окремий контейнер-навантажувач (load generator) з Grafana k6, який автоматично генерує запити до API.
+
+Проведено моніторинг через Amazon CloudWatch (CPUUtilization, Scaling Activities, ECS events).
+
+Після виконання тесту контейнери loadgen-сервісу автоматично завершують роботу.
+
+🧰 Використані технології
+
+Python 3.12, Flask, Flask-RESTx
+
+Docker + Amazon ECR / ECS (Fargate)
+
+AWS CloudWatch — моніторинг і тригери масштабування
+
+AWS Application Auto Scaling — Target Tracking Policy
+
+Grafana k6 — генератор навантаження (VUs, Duration, Target)
+
+IAM Roles, CloudWatch Logs — доступи та логування ECS taskів
+
+⚙️ Основні елементи
+
+/heavy?seconds=3&mode=cpu — endpoint для створення CPU-навантаження
+
+ECS Task Definition: параметри CPU=512, Memory=1024, autoscaling 1→2 контейнери
+
+Load Generator (k6): 20 VUs, 5 хв тривалість, TARGET=http://<API>:8080/heavy
+
+CloudWatch Graphs: CPUUtilization, Scaling Activities Logs
+
+✅ Висновок
+
+У результаті роботи створено повноцінну інфраструктуру контейнеризованого застосунку:
+API-сервіс Flask автоматично масштабується під час підвищеного навантаження, а після зменшення — кількість контейнерів зменшується.
+Використано AWS ECS Fargate, ECR, CloudWatch та генератор навантаження k6 для повного циклу тестування та моніторингу масштабування.
