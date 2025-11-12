@@ -1,4 +1,4 @@
-from my_project.auth.dao.configuration_dao import ConfigurationDAO
+from app.my_project.auth.dao.configuration_dao import ConfigurationDAO
 
 class ConfigurationService:
     def __init__(self):

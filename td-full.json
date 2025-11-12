@@ -1,0 +1,99 @@
+{
+    "taskDefinitionArn": "arn:aws:ecs:eu-central-1:235366377533:task-definition/laba4-api:4",
+    "containerDefinitions": [
+        {
+            "name": "api",
+            "image": "235366377533.dkr.ecr.eu-central-1.amazonaws.com/laba4-api:v2",
+            "cpu": 0,
+            "portMappings": [
+                {
+                    "containerPort": 8080,
+                    "hostPort": 8080,
+                    "protocol": "tcp",
+                    "name": "api-8080-tcp",
+                    "appProtocol": "http"
+                }
+            ],
+            "essential": true,
+            "environment": [
+                {
+                    "name": "JWT_SECRET_KEY",
+                    "value": "dev-secret"
+                },
+                {
+                    "name": "SQLALCHEMY_DATABASE_URI",
+                    "value": "mysql+mysqlconnector://app_user:Roxa39865475@lab1-mysql.crms86a2cnqq.eu-central-1.rds.amazonaws.com:3306/app_db"
+                },
+                {
+                    "name": "DATABASE_URL",
+                    "value": "mysql+mysqlconnector://app_user:Roxa39865475@lab1-mysql.crms86a2cnqq.eu-central-1.rds.amazonaws.com:3306/app_db"
+                }
+            ],
+            "environmentFiles": [],
+            "mountPoints": [],
+            "volumesFrom": [],
+            "ulimits": [],
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "/ecs/laba4-api",
+                    "awslogs-create-group": "true",
+                    "awslogs-region": "eu-central-1",
+                    "awslogs-stream-prefix": "ecs"
+                },
+                "secretOptions": []
+            },
+            "systemControls": []
+        }
+    ],
+    "family": "laba4-api",
+    "executionRoleArn": "arn:aws:iam::235366377533:role/ecsTaskExecutionRole",
+    "networkMode": "awsvpc",
+    "revision": 4,
+    "volumes": [],
+    "status": "ACTIVE",
+    "requiresAttributes": [
+        {
+            "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
+        },
+        {
+            "name": "ecs.capability.execution-role-awslogs"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.ecr-auth"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
+        },
+        {
+            "name": "ecs.capability.execution-role-ecr-pull"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
+        },
+        {
+            "name": "ecs.capability.task-eni"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.29"
+        }
+    ],
+    "placementConstraints": [],
+    "compatibilities": [
+        "EC2",
+        "FARGATE",
+        "MANAGED_INSTANCES"
+    ],
+    "runtimePlatform": {
+        "cpuArchitecture": "X86_64",
+        "operatingSystemFamily": "LINUX"
+    },
+    "requiresCompatibilities": [
+        "FARGATE"
+    ],
+    "cpu": "512",
+    "memory": "1024",
+    "registeredAt": "2025-11-11T17:51:42.441000+00:00",
+    "registeredBy": "arn:aws:iam::235366377533:root",
+    "enableFaultInjection": false
+}

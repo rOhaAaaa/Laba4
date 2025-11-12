@@ -1,4 +1,4 @@
-from my_project.auth.dao.computer_dao import ComputerDAO
+from app.my_project.auth.dao.computer_dao import ComputerDAO
 
 class ComputerService:
     def __init__(self):

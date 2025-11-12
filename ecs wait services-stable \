@@ -1,0 +1,269 @@
+{
+    "service": {
+        "serviceArn": "arn:aws:ecs:eu-central-1:235366377533:service/laba4-cluster/laba4-api-service-laqvf5hr",
+        "serviceName": "laba4-api-service-laqvf5hr",
+        "clusterArn": "arn:aws:ecs:eu-central-1:235366377533:cluster/laba4-cluster",
+        "loadBalancers": [],
+        "serviceRegistries": [],
+        "status": "ACTIVE",
+        "desiredCount": 1,
+        "runningCount": 1,
+        "pendingCount": 1,
+        "capacityProviderStrategy": [
+            {
+                "capacityProvider": "FARGATE",
+                "weight": 1,
+                "base": 0
+            }
+        ],
+        "platformVersion": "LATEST",
+        "platformFamily": "Linux",
+        "taskDefinition": "arn:aws:ecs:eu-central-1:235366377533:task-definition/laba4-api:4",
+        "deploymentConfiguration": {
+            "deploymentCircuitBreaker": {
+                "enable": true,
+                "rollback": true
+            },
+            "maximumPercent": 200,
+            "minimumHealthyPercent": 100,
+            "strategy": "ROLLING",
+            "bakeTimeInMinutes": 0
+        },
+        "deployments": [
+            {
+                "id": "ecs-svc/2183905797619057260",
+                "status": "PRIMARY",
+                "taskDefinition": "arn:aws:ecs:eu-central-1:235366377533:task-definition/laba4-api:4",
+                "desiredCount": 0,
+                "pendingCount": 0,
+                "runningCount": 0,
+                "failedTasks": 0,
+                "createdAt": "2025-11-11T18:18:16.090000+00:00",
+                "updatedAt": "2025-11-11T18:18:16.090000+00:00",
+                "capacityProviderStrategy": [
+                    {
+                        "capacityProvider": "FARGATE",
+                        "weight": 1,
+                        "base": 0
+                    }
+                ],
+                "platformVersion": "1.4.0",
+                "platformFamily": "Linux",
+                "networkConfiguration": {
+                    "awsvpcConfiguration": {
+                        "subnets": [
+                            "subnet-07471f7e9429dcee1",
+                            "subnet-0acb1e646ef0cbdd1",
+                            "subnet-0dd1e1f432d55cb85"
+                        ],
+                        "securityGroups": [
+                            "sg-0e93fc2caa7751cbb"
+                        ],
+                        "assignPublicIp": "ENABLED"
+                    }
+                },
+                "rolloutState": "IN_PROGRESS",
+                "rolloutStateReason": "ECS deployment ecs-svc/2183905797619057260 in progress."
+            },
+            {
+                "id": "ecs-svc/8123866504266816308",
+                "status": "ACTIVE",
+                "taskDefinition": "arn:aws:ecs:eu-central-1:235366377533:task-definition/laba4-api:4",
+                "desiredCount": 1,
+                "pendingCount": 1,
+                "runningCount": 0,
+                "failedTasks": 0,
+                "createdAt": "2025-11-11T18:17:48.692000+00:00",
+                "updatedAt": "2025-11-11T18:18:02.299000+00:00",
+                "capacityProviderStrategy": [
+                    {
+                        "capacityProvider": "FARGATE",
+                        "weight": 1,
+                        "base": 0
+                    }
+                ],
+                "platformVersion": "1.4.0",
+                "platformFamily": "Linux",
+                "networkConfiguration": {
+                    "awsvpcConfiguration": {
+                        "subnets": [
+                            "subnet-07471f7e9429dcee1",
+                            "subnet-0acb1e646ef0cbdd1",
+                            "subnet-0dd1e1f432d55cb85"
+                        ],
+                        "securityGroups": [
+                            "sg-0e93fc2caa7751cbb"
+                        ],
+                        "assignPublicIp": "ENABLED"
+                    }
+                },
+                "rolloutState": "IN_PROGRESS",
+                "rolloutStateReason": "ECS deployment ecs-svc/8123866504266816308 in progress."
+            },
+            {
+                "id": "ecs-svc/1609221774923888852",
+                "status": "ACTIVE",
+                "taskDefinition": "arn:aws:ecs:eu-central-1:235366377533:task-definition/laba4-api:4",
+                "desiredCount": 1,
+                "pendingCount": 0,
+                "runningCount": 1,
+                "failedTasks": 0,
+                "createdAt": "2025-11-11T18:14:32.924000+00:00",
+                "updatedAt": "2025-11-11T18:18:02.305000+00:00",
+                "capacityProviderStrategy": [
+                    {
+                        "capacityProvider": "FARGATE",
+                        "weight": 1,
+                        "base": 0
+                    }
+                ],
+                "platformVersion": "1.4.0",
+                "platformFamily": "Linux",
+                "networkConfiguration": {
+                    "awsvpcConfiguration": {
+                        "subnets": [
+                            "subnet-07471f7e9429dcee1",
+                            "subnet-0acb1e646ef0cbdd1",
+                            "subnet-0dd1e1f432d55cb85"
+                        ],
+                        "securityGroups": [
+                            "sg-0e93fc2caa7751cbb"
+                        ],
+                        "assignPublicIp": "ENABLED"
+                    }
+                },
+                "rolloutState": "IN_PROGRESS",
+                "rolloutStateReason": "ECS deployment ecs-svc/1609221774923888852 in progress."
+            }
+        ],
+        "roleArn": "arn:aws:iam::235366377533:role/aws-service-role/ecs.amazonaws.com/AWSServiceRoleForECS",
+        "events": [
+            {
+                "id": "1db2f244-731f-432e-a065-aa63f520d6dd",
+                "createdAt": "2025-11-11T18:18:02.999000+00:00",
+                "message": "(service laba4-api-service-laqvf5hr) has started 1 tasks: (task 957ef04c2fb9481d8caee5f000b88296)."
+            },
+            {
+                "id": "72896b19-c5e4-4013-b819-45736fc88bf5",
+                "createdAt": "2025-11-11T18:15:57.910000+00:00",
+                "message": "(service laba4-api-service-laqvf5hr) has stopped 1 running tasks: (task be07fe3a049246fe94dd3ef55707e96a)."
+            },
+            {
+                "id": "260e4b3d-3041-4942-9bd8-945760354f9f",
+                "createdAt": "2025-11-11T18:14:46.608000+00:00",
+                "message": "(service laba4-api-service-laqvf5hr) has started 1 tasks: (task 8de6eebe904042a4960d18359721f7e0)."
+            },
+            {
+                "id": "c0582b0f-166d-4843-bbf2-58a331505c59",
+                "createdAt": "2025-11-11T17:56:10.304000+00:00",
+                "message": "(service laba4-api-service-laqvf5hr) has reached a steady state."
+            },
+            {
+                "id": "4336fa28-9ca2-49d5-89bb-1acba7166b6a",
+                "createdAt": "2025-11-11T17:56:10.303000+00:00",
+                "message": "(service laba4-api-service-laqvf5hr) (deployment ecs-svc/5412612221235072308) deployment completed."
+            },
+            {
+                "id": "daf772a0-f483-4f2b-b9af-2d0672c38e0b",
+                "createdAt": "2025-11-11T17:53:22.123000+00:00",
+                "message": "(service laba4-api-service-laqvf5hr) has stopped 1 running tasks: (task 38e4411e8b8c4069bc3de922953a0155)."
+            },
+            {
+                "id": "8c472621-2cbd-40b4-b9d1-8acc2cc4bb7b",
+                "createdAt": "2025-11-11T17:52:09.279000+00:00",
+                "message": "(service laba4-api-service-laqvf5hr) has started 1 tasks: (task be07fe3a049246fe94dd3ef55707e96a)."
+            },
+            {
+                "id": "748f889b-79e9-47c2-b904-645727ee8aa6",
+                "createdAt": "2025-11-11T17:37:21.849000+00:00",
+                "message": "(service laba4-api-service-laqvf5hr) has reached a steady state."
+            },
+            {
+                "id": "74f79d39-db43-4176-a277-7ad39fb2ed8e",
+                "createdAt": "2025-11-11T17:37:21.848000+00:00",
+                "message": "(service laba4-api-service-laqvf5hr) (deployment ecs-svc/6674891886288502034) deployment completed."
+            },
+            {
+                "id": "04e51b14-0a3c-4099-a040-489323accbbb",
+                "createdAt": "2025-11-11T17:34:23.515000+00:00",
+                "message": "(service laba4-api-service-laqvf5hr) has stopped 1 running tasks: (task aeef56633c1047b0b45cc275043fd6c7)."
+            },
+            {
+                "id": "eef9b6a9-00a4-4bca-9836-dc4fd2b3d021",
+                "createdAt": "2025-11-11T17:33:10.871000+00:00",
+                "message": "(service laba4-api-service-laqvf5hr) has started 1 tasks: (task 38e4411e8b8c4069bc3de922953a0155)."
+            },
+            {
+                "id": "ce7555f4-da69-4634-8473-9be4e3936da1",
+                "createdAt": "2025-11-11T16:35:50.738000+00:00",
+                "message": "(service laba4-api-service-laqvf5hr) has reached a steady state."
+            },
+            {
+                "id": "9524070b-94ee-4265-a008-c12d09cc208c",
+                "createdAt": "2025-11-11T16:35:50.737000+00:00",
+                "message": "(service laba4-api-service-laqvf5hr) (deployment ecs-svc/7199146973422116442) deployment completed."
+            },
+            {
+                "id": "eb8eb5d6-204a-46a1-b74f-5be95b85987d",
+                "createdAt": "2025-11-11T16:33:17.179000+00:00",
+                "message": "(service laba4-api-service-laqvf5hr) has stopped 1 running tasks: (task 0a6dda40f5dd4d57b5e447d9bb8d4e51)."
+            },
+            {
+                "id": "289b0066-e5f1-4eda-9225-81b67a7850fc",
+                "createdAt": "2025-11-11T16:31:54.617000+00:00",
+                "message": "(service laba4-api-service-laqvf5hr) has started 1 tasks: (task aeef56633c1047b0b45cc275043fd6c7)."
+            },
+            {
+                "id": "e5bab890-5043-42ba-89a9-9083c48e4a02",
+                "createdAt": "2025-11-11T16:30:41.240000+00:00",
+                "message": "(service laba4-api-service-laqvf5hr) has stopped 1 running tasks: (task 469a66ff90c54d7f8860137b238441a4)."
+            },
+            {
+                "id": "fee345bc-f069-494d-9ad4-e2f637252583",
+                "createdAt": "2025-11-11T16:29:29.946000+00:00",
+                "message": "(service laba4-api-service-laqvf5hr) has started 1 tasks: (task 0a6dda40f5dd4d57b5e447d9bb8d4e51)."
+            },
+            {
+                "id": "9baaaa1f-8cee-4a64-be57-b7b9ec80fde4",
+                "createdAt": "2025-11-11T16:19:19.335000+00:00",
+                "message": "(service laba4-api-service-laqvf5hr) has reached a steady state."
+            },
+            {
+                "id": "30227e60-742f-45a2-a18d-0406a1a8d27b",
+                "createdAt": "2025-11-11T16:19:19.334000+00:00",
+                "message": "(service laba4-api-service-laqvf5hr) (deployment ecs-svc/7894014413580986651) deployment completed."
+            },
+            {
+                "id": "946a5db8-d323-4312-94db-1ac0ea46c838",
+                "createdAt": "2025-11-11T16:16:44.228000+00:00",
+                "message": "(service laba4-api-service-laqvf5hr) has started 1 tasks: (task 469a66ff90c54d7f8860137b238441a4)."
+            }
+        ],
+        "createdAt": "2025-11-11T16:16:28.526000+00:00",
+        "placementConstraints": [],
+        "placementStrategy": [],
+        "networkConfiguration": {
+            "awsvpcConfiguration": {
+                "subnets": [
+                    "subnet-07471f7e9429dcee1",
+                    "subnet-0acb1e646ef0cbdd1",
+                    "subnet-0dd1e1f432d55cb85"
+                ],
+                "securityGroups": [
+                    "sg-0e93fc2caa7751cbb"
+                ],
+                "assignPublicIp": "ENABLED"
+            }
+        },
+        "healthCheckGracePeriodSeconds": 60,
+        "schedulingStrategy": "REPLICA",
+        "deploymentController": {
+            "type": "ECS"
+        },
+        "createdBy": "arn:aws:iam::235366377533:root",
+        "enableECSManagedTags": true,
+        "propagateTags": "NONE",
+        "enableExecuteCommand": false,
+        "availabilityZoneRebalancing": "ENABLED"
+    }
+}

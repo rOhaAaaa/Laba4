@@ -1,6 +1,6 @@
-from db import db
+from app.db import db
 from sqlalchemy.orm import relationship
-from my_project.auth.domain.association_table import employee_printers
+from app.my_project.auth.domain.association_table import employee_printers
 
 class Printer(db.Model):
     __tablename__ = 'printers'
@@ -9,7 +9,7 @@ class Printer(db.Model):
     printer_type = db.Column(db.String(50), nullable=False)
     print_speed = db.Column(db.String(50), nullable=False)
 
-    employees = relationship('Employee', secondary=employee_printers, back_populates='printers')
+    employees = relationship('Employee', secondary=employee_printers, back_populates='printers', lazy='dynamic')
 
     def to_dict(self):
         return {

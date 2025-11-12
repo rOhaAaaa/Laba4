@@ -1,4 +1,4 @@
-from db import db
+from app.db import db
 
 class IPPhone(db.Model):
     __tablename__ = 'ip_phones'

@@ -1,5 +1,5 @@
-from my_project.auth.domain.printer import Printer
-from db import db
+from app.my_project.auth.domain.printer import Printer
+from app.db import db
 
 class PrinterDAO:
     def __init__(self):

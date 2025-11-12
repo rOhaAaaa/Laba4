@@ -1,5 +1,5 @@
-from my_project.auth.domain.router import Router
-from db import db
+from app.my_project.auth.domain.router import Router
+from app.db import db
 
 class RouterDAO:
     def __init__(self):

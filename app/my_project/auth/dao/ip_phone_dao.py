@@ -1,5 +1,5 @@
-from my_project.auth.domain.ip_phone import IPPhone
-from db import db
+from app.my_project.auth.domain.ip_phone import IPPhone
+from app.db import db
 
 class IPPhoneDAO:
     def __init__(self):

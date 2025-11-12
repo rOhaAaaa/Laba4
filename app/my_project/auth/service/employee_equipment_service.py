@@ -1,4 +1,4 @@
-from my_project.auth.dao.employee_equipment_dao import EmployeeEquipmentDAO
+from app.my_project.auth.dao.employee_equipment_dao import EmployeeEquipmentDAO
 
 class EmployeeEquipmentService:
     def __init__(self):

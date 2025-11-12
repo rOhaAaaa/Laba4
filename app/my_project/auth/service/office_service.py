@@ -1,4 +1,4 @@
-from my_project.auth.dao.office_dao import OfficeDAO
+from app.my_project.auth.dao.office_dao import OfficeDAO
 
 class OfficeService:
     def __init__(self):

@@ -1,4 +1,4 @@
-from my_project.auth.dao.access_point_dao import AccessPointDAO
+from app.my_project.auth.dao.access_point_dao import AccessPointDAO
 
 class AccessPointService:
     def __init__(self):
